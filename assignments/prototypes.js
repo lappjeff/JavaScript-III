@@ -81,9 +81,7 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
     healthPoints: 5,
     name: 'Bruce',
     team: 'Mage Guild',
-    weapons: [
-      'Staff of Shamalama',
-    ],
+    weapons: 'Staff of Shamalama',
     language: 'Common Tongue',
   });
 
