@@ -42,12 +42,12 @@ console.log(impBind.isFavLang());
 
 const bindMe = {
     name: 'Jeff',
-    bound: true
-}
-const alsoBound = ['same', 'thing', 'here'];
-
-function expBind (param, arr1, arr2, arr3) {
-    return ` It's ${this.bound}, I am ${this.name}. Also ${arr1} ${arr2} ${arr3}`
+    bound: true,
+    test: 3
 }
 
-console.log(expBind.call(bindMe, alsoBound ));
+function expBind (action) {
+    return `${this.name} is bound(${this.bound}) . Also, ${this.test}`
+}
+
+console.log(expBind.call(bindMe));
