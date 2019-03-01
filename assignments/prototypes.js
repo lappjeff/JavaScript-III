@@ -62,6 +62,14 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
  Humanoid.prototype.greet = function () {
      return `${this.name} offers a greeting in ${this.language}`
  }
+ Humanoid.prototype.attack = function(target) {
+     let damage = Math.floor(Math.random() * (5 - 1)) + 1;
+     newHealth = target.healthPoints -= damage
+     console.log(`${target.name} has been attacked for ${damage} health points! There are ${target.healthPoints} health points left!`)
+     if (target.healthPoints <= 0) {
+         console.log(target.destroy())
+     }
+ }
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
@@ -135,3 +143,44 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+
+  function Hero (heroAttributes) {
+      Humanoid.call(this, heroAttributes);
+
+  }
+
+  Hero.prototype = Object.create(Humanoid.prototype);
+
+  function Villain (villainAttributes) {
+      Humanoid.call(this, villainAttributes);
+
+  }
+
+  Villain.prototype = Object.create(Humanoid.prototype);
+
+  const sheriff = new Villain({
+      name: 'Sheriff of Nottingham',
+      createdAt: new Date(),
+      dimensions: {
+          height: 3,
+          width: 2
+      },
+      healthPoints: 20,
+      language: 'English',
+      team: 'Villain',
+      weapons: ['Police', 'Sword', 'Money']
+  })
+
+  const robinHood = new Hero({
+      name: 'Robin Hood',
+      createdAt: new Date(),
+      dimensions: {
+          height: 3,
+          width: 4
+      },
+      healthPoints: 25,
+      language: 'English',
+      team: 'Hero',
+      weapons: ['Bow', 'Dagger', 'Charm']
+  })
